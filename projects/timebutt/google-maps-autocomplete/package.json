@@ -1,15 +1,15 @@
 {
-  "name": "@angular-material-extensions/google-maps-autocomplete",
+  "name": "@timebutt/google-maps-autocomplete",
   "description": "Autocomplete input component and directive for google-maps built with angular and material design",
-  "version": "6.2.1",
-  "homepage": "https://angular-material-extensions.github.io/google-maps-autocomplete",
+  "version": "13.0.0",
+  "homepage": "https://github.com/Timebutt/google-maps-autocomplete",
   "author": {
-    "name": "Anthony Nahas",
-    "url": "https://github.com/angular-material-extensions"
+    "name": "Nils Tijtgat",
+    "url": "https://github.com/Timebutt/google-maps-autocomplete"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/angular-material-extensions/google-maps-autocomplete.git"
+    "url": "git@github.com:Timebutt/google-maps-autocomplete.git"
   },
   "license": "MIT",
   "schematics": "./schematics/collection.json",
@@ -27,7 +27,7 @@
     "city"
   ],
   "bugs": {
-    "url": "https://github.com/angular-material-extensions/google-maps-autocomplete/issues"
+    "url": "https://github.com/Timebutt/google-maps-autocomplete/issues"
   },
   "scripts": {
     "build": "../../../node_modules/.bin/ng build @angular-material-extensions/google-maps-autocomplete --prod",
@@ -48,17 +48,17 @@
     "test:watch": "../../../node_modules/.bin/jest --coverage --watch"
   },
   "peerDependencies": {
-    "@angular/common": "^11.0.2",
-    "@angular/core": "^11.0.2",
-    "@angular/platform-browser": "^11.0.2",
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0",
+    "@angular/platform-browser": "^13.0.0",
     "@angular/flex-layout": "^11.0.0-beta.33",
-    "@angular/forms": "^11.0.2",
-    "@angular/cdk": "^11.0.0",
-    "@angular/material": "^11.0.0",
+    "@angular/forms": "^13.0.0",
+    "@angular/cdk": "^13.0.0",
+    "@angular/material": "^13.0.0",
     "@agm/core": "^3.0.0-beta.0",
     "@types/googlemaps": "3.39.12",
-    "rxjs": "^6.6.3",
-    "zone.js": "~0.11.1"
+    "rxjs": "^7.4.0",
+    "zone.js": "~0.11.4"
   },
   "engines": {
     "node": ">=10.0.0"
@@ -69,7 +69,7 @@
     },
     "npm": {
       "publish": true,
-      "publishPath": "../../../dist/angular-material-extensions/google-maps-autocomplete"
+      "publishPath": "../../../dist/timebutt/google-maps-autocomplete"
     },
     "publishConfig": {
       "access": "public"
