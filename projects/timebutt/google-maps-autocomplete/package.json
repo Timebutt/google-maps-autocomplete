@@ -1,7 +1,7 @@
 {
   "name": "@timebutt/google-maps-autocomplete",
   "description": "Autocomplete input component and directive for google-maps built with angular and material design",
-  "version": "13.0.0",
+  "version": "13.0.2",
   "homepage": "https://github.com/Timebutt/google-maps-autocomplete",
   "author": {
     "name": "Nils Tijtgat",
