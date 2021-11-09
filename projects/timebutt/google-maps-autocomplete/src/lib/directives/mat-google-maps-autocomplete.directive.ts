@@ -220,8 +220,22 @@ export class MatGoogleMapsAutocompleteDirective
   setDisabledState(isDisabled: boolean): void {}
 
   writeValue(obj: any): void {
-    if (obj) {
-      this.value = obj;
+    if (obj && obj.name && obj.place_id) {
+      this.elemRef.nativeElement.value = obj.name;
+      // Get the first result and get its details using the PlacesService
+      const placesService = new google.maps.places.PlacesService(
+        document.createElement("div")
+      );
+      placesService.getDetails({ placeId: obj.place_id }, (place) => {
+        // Here's the first result in the AutoComplete with the exact
+        // same data format as you get from the AutoComplete.
+        this.value = place;
+        this.propagateChange(this.value);
+      });
+    } else if (obj && obj.name) {
+      this.elemRef.nativeElement.value = obj.name;
+      this.value = { name: obj.name, formatted_address: obj.name };
+      this.propagateChange(this.value);
     }
   }
 }
