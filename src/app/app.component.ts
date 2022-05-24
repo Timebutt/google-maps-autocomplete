@@ -1,19 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {Appearance, GermanAddress, Location} from '@angular-material-extensions/google-maps-autocomplete';
-import {Angulartics2GoogleAnalytics} from 'angulartics2/ga';
-import {FormControl, FormGroup} from '@angular/forms';
+import {
+  Appearance,
+  GermanAddress,
+  Location,
+} from "@angular-material-extensions/google-maps-autocomplete";
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
+import { Angulartics2GoogleAnalytics } from "angulartics2/ga";
 import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
-
-  title = 'google-maps-autocomplete';
+  title = "google-maps-autocomplete";
 
   addressFormGroup: FormGroup;
+
+  directiveFormControl = new FormControl();
 
   public appearance = Appearance;
   public zoom: number;
@@ -23,13 +28,13 @@ export class AppComponent implements OnInit {
   public showAsComponent = true;
 
   addressValue: GermanAddress = {
-    streetNumber: '100',
-    streetName: 'Your StreetName',
-    vicinity: 'Your vicinity',
+    streetNumber: "100",
+    streetName: "Your StreetName",
+    vicinity: "Your vicinity",
     postalCode: 37084,
     locality: {
-      long: 'your locality'
-    }
+      long: "your locality",
+    },
   };
 
   constructor(angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
@@ -37,7 +42,7 @@ export class AppComponent implements OnInit {
   }
 
   private setCurrentPosition() {
-    if ('geolocation' in navigator) {
+    if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
@@ -47,11 +52,11 @@ export class AppComponent implements OnInit {
   }
 
   onAutocompleteSelected(result: PlaceResult) {
-    console.log('onAddressSelected: ', result);
+    console.log("onAddressSelected: ", result);
   }
 
   onLocationSelected(location: Location) {
-    console.log('onLocationSelected: ', location);
+    console.log("onLocationSelected: ", location);
     this.latitude = location.latitude;
     this.longitude = location.longitude;
   }
@@ -62,7 +67,7 @@ export class AppComponent implements OnInit {
   }
 
   onGermanAddressMapped($event: GermanAddress) {
-    console.log('onGermanAddressMapped', $event);
+    console.log("onGermanAddressMapped", $event);
   }
 
   ngOnInit(): void {
@@ -72,8 +77,7 @@ export class AppComponent implements OnInit {
     });
 
     this.addressFormGroup
-      .get('address')
-      .valueChanges
-      .subscribe(value => console.log('value changed', value))
+      .get("address")
+      .valueChanges.subscribe((value) => console.log("value changed", value));
   }
 }
