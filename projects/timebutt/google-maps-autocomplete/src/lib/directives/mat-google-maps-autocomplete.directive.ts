@@ -124,7 +124,6 @@ export class MatGoogleMapsAutocompleteDirective implements OnInit, OnDestroy, Co
             .then(() => {
                 const autocomplete = new google.maps.places.Autocomplete(this.elemRef.nativeElement, this.autoCompleteOptions);
                 autocomplete.addListener('place_changed', () => {
-                    console.log('jmlkjqsdf');
                     this.ngZone.run(() => {
                         // get the place result
                         const place: PlaceResult = autocomplete.getPlace();
