@@ -55,8 +55,7 @@
         "@angular/forms": "^13.0.0",
         "@angular/cdk": "^13.0.0",
         "@angular/material": "^13.0.0",
-        "@agm/core": "^3.0.0-beta.0",
-        "@types/googlemaps": "3.39.12",
+        "@googlemaps/js-api-loader": "^1.15.1",
         "rxjs": "^7.4.0",
         "zone.js": "~0.11.4"
     },

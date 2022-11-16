@@ -1,20 +1,19 @@
 {
-  "extends": "../../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../../../out-tsc/lib",
-    "target": "es2020",
-    "declaration": true,
-    "inlineSources": true,
-    "types": ["googlemaps"],
-    "lib": ["dom", "es2018"]
-  },
-  "angularCompilerOptions": {
-    "skipTemplateCodegen": true,
-    "strictMetadataEmit": true,
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true,
-    "enableResourceInlining": true,
-    "compilationMode": "partial"
-  },
-  "exclude": ["src/test.ts", "**/*.spec.ts"]
+    "extends": "../../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../../../out-tsc/lib",
+        "target": "es2020",
+        "declaration": true,
+        "inlineSources": true,
+        "lib": ["dom", "es2018"]
+    },
+    "angularCompilerOptions": {
+        "skipTemplateCodegen": true,
+        "strictMetadataEmit": true,
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true,
+        "enableResourceInlining": true,
+        "compilationMode": "partial"
+    },
+    "exclude": ["src/test.ts", "**/*.spec.ts"]
 }

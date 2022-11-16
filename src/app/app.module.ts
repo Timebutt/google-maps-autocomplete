@@ -1,8 +1,6 @@
-import { AgmCoreModule } from '@agm/core';
-import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -14,17 +12,11 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { MatGoogleMapsAutocompleteModule } from '@timebutt/google-maps-autocomplete';
 import { Angulartics2Module } from 'angulartics2';
 import { MarkdownModule } from 'ngx-markdown';
 import { ConfigComponent } from '../config/config.component';
 import { AppComponent } from './app.component';
-
-const googleMapsParams = {
-    apiKey: 'apiKey',
-    libraries: ['places'],
-    language: 'en',
-    // region: 'DE'
-};
 
 @NgModule({
     declarations: [AppComponent, ConfigComponent],
@@ -35,8 +27,7 @@ const googleMapsParams = {
         RouterModule.forRoot([]),
         Angulartics2Module.forRoot(),
         MarkdownModule.forRoot(),
-        AgmCoreModule.forRoot(googleMapsParams),
-        MatGoogleMapsAutocompleteModule,
+        MatGoogleMapsAutocompleteModule.forRoot('AIzaSyD7aI7elBUMplf9aOmT-wMhiojOxBj5Jxg'),
         FlexLayoutModule,
         FormsModule,
         ReactiveFormsModule,

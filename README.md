@@ -267,7 +267,6 @@ in your component, the code will be similar to -->
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Location, Appearance, GermanAddress} from '@angular-material-extensions/google-maps-autocomplete';
-import {} from '@types/googlemaps';
 import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({

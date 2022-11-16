@@ -1,4 +1,3 @@
-import { MapsAPILoader } from '@agm/core';
 import { isPlatformBrowser } from '@angular/common';
 import {
     Directive,
@@ -14,8 +13,10 @@ import {
     Output,
     PLATFORM_ID,
 } from '@angular/core';
-import { ControlValueAccessor, UntypedFormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, UntypedFormControl, Validators } from '@angular/forms';
+import { Loader } from '@googlemaps/js-api-loader';
 import { debounceTime, Subject, takeUntil } from 'rxjs';
+import { GOOGLE_MAPS_AUTOCOMPLETE_API_KEY } from '../constants';
 import { Location } from '../interfaces/location.interface';
 import { MatValidateAddressDirective } from './address-validator/mat-address-validator.directive';
 import PlaceResult = google.maps.places.PlaceResult;
@@ -81,8 +82,8 @@ export class MatGoogleMapsAutocompleteDirective implements OnInit, OnDestroy, Co
 
     constructor(
         @Inject(PLATFORM_ID) public platformId: string,
+        @Inject(GOOGLE_MAPS_AUTOCOMPLETE_API_KEY) private apiKey: string,
         public elemRef: ElementRef,
-        public mapsAPILoader: MapsAPILoader,
         private ngZone: NgZone
     ) {}
 
@@ -93,11 +94,10 @@ export class MatGoogleMapsAutocompleteDirective implements OnInit, OnDestroy, Co
                 fields: this.FIELDS,
                 placeIdOnly: this.placeIdOnly,
                 strictBounds: this.strictBounds,
-                type: this.type,
+                ...(this.type ? { types: [this.type] } : {}),
             };
 
             this.country ? (options.componentRestrictions = { country: this.country }) : null;
-            this.country ? (options.types = this.types) : null;
 
             this.autoCompleteOptions = Object.assign(this.autoCompleteOptions, options);
             this.initGoogleMapsAutocomplete();
@@ -115,11 +115,16 @@ export class MatGoogleMapsAutocompleteDirective implements OnInit, OnDestroy, Co
     }
 
     public initGoogleMapsAutocomplete() {
-        this.mapsAPILoader
+        new Loader({
+            apiKey: this.apiKey,
+            version: 'weekly',
+            libraries: ['places'],
+        })
             .load()
             .then(() => {
                 const autocomplete = new google.maps.places.Autocomplete(this.elemRef.nativeElement, this.autoCompleteOptions);
                 autocomplete.addListener('place_changed', () => {
+                    console.log('jmlkjqsdf');
                     this.ngZone.run(() => {
                         // get the place result
                         const place: PlaceResult = autocomplete.getPlace();
@@ -142,7 +147,9 @@ export class MatGoogleMapsAutocompleteDirective implements OnInit, OnDestroy, Co
                     });
                 });
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
     registerOnChange(fn: any): void {

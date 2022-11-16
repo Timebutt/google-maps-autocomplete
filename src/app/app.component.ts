@@ -1,83 +1,77 @@
-import {
-  Appearance,
-  GermanAddress,
-  Location,
-} from "@angular-material-extensions/google-maps-autocomplete";
-import { Component, OnInit } from "@angular/core";
-import { UntypedFormControl, UntypedFormGroup } from "@angular/forms";
-import { Angulartics2GoogleAnalytics } from "angulartics2/ga";
+import { Component, OnInit } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { Appearance, GermanAddress, Location } from '@timebutt/google-maps-autocomplete';
+import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = "google-maps-autocomplete";
+    title = 'google-maps-autocomplete';
 
-  addressFormGroup: UntypedFormGroup;
+    addressFormGroup: UntypedFormGroup;
 
-  directiveFormControl = new UntypedFormControl();
+    directiveFormControl = new UntypedFormControl();
 
-  public appearance = Appearance;
-  public zoom: number;
-  public latitude: number;
-  public longitude: number;
-  public showAsDirective = false;
-  public showAsComponent = true;
+    public appearance = Appearance;
+    public zoom: number;
+    public latitude: number;
+    public longitude: number;
+    public showAsDirective = false;
+    public showAsComponent = true;
 
-  addressValue: GermanAddress = {
-    streetNumber: "100",
-    streetName: "Your StreetName",
-    vicinity: "Your vicinity",
-    postalCode: 37084,
-    locality: {
-      long: "your locality",
-    },
-  };
+    addressValue: GermanAddress = {
+        streetNumber: '100',
+        streetName: 'Your StreetName',
+        vicinity: 'Your vicinity',
+        postalCode: 37084,
+        locality: {
+            long: 'your locality',
+        },
+    };
 
-  constructor(angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
-    angulartics2GoogleAnalytics.startTracking();
-  }
-
-  private setCurrentPosition() {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 12;
-      });
+    constructor(angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
+        angulartics2GoogleAnalytics.startTracking();
     }
-  }
 
-  onAutocompleteSelected(result: PlaceResult) {
-    console.log("onAddressSelected: ", result);
-  }
+    private setCurrentPosition() {
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                this.latitude = position.coords.latitude;
+                this.longitude = position.coords.longitude;
+                this.zoom = 12;
+            });
+        }
+    }
 
-  onLocationSelected(location: Location) {
-    console.log("onLocationSelected: ", location);
-    this.latitude = location.latitude;
-    this.longitude = location.longitude;
-  }
+    onAutocompleteSelected(result: PlaceResult) {
+        console.log('onAddressSelected: ', result);
+    }
 
-  flip() {
-    this.showAsDirective = !this.showAsDirective;
-    this.showAsComponent = !this.showAsDirective;
-  }
+    onLocationSelected(location: Location) {
+        console.log('onLocationSelected: ', location);
+        this.latitude = location.latitude;
+        this.longitude = location.longitude;
+    }
 
-  onGermanAddressMapped($event: GermanAddress) {
-    console.log("onGermanAddressMapped", $event);
-  }
+    flip() {
+        this.showAsDirective = !this.showAsDirective;
+        this.showAsComponent = !this.showAsDirective;
+    }
 
-  ngOnInit(): void {
-    this.addressFormGroup = new UntypedFormGroup({
-      // address: new FormControl(this.addressValue),
-      address: new UntypedFormControl(),
-    });
+    onGermanAddressMapped($event: GermanAddress) {
+        console.log('onGermanAddressMapped', $event);
+    }
 
-    this.addressFormGroup
-      .get("address")
-      .valueChanges.subscribe((value) => console.log("value changed", value));
-  }
+    ngOnInit(): void {
+        this.addressFormGroup = new UntypedFormGroup({
+            // address: new FormControl(this.addressValue),
+            address: new UntypedFormControl(),
+        });
+
+        this.addressFormGroup.get('address').valueChanges.subscribe((value) => console.log('value changed', value));
+    }
 }

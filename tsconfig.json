@@ -1,29 +1,25 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "es2020",
-    "types": ["node", "googlemaps"],
-    "lib": ["es2018", "dom"],
-    "paths": {
-      "@angular-material-extensions/google-maps-autocomplete": [
-        "projects/timebutt/google-maps-autocomplete/src/public-api.ts"
-      ],
-      "@angular-material-extensions/google-maps-autocomplete/*": [
-        "projects/timebutt/google-maps-autocomplete/*"
-      ]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es2020",
+        "types": ["node"],
+        "lib": ["es2018", "dom"],
+        "paths": {
+            "@timebutt/google-maps-autocomplete": ["projects/timebutt/google-maps-autocomplete/src/public-api.ts"],
+            "@timebutt/google-maps-autocomplete/*": ["projects/timebutt/google-maps-autocomplete/*"]
+        }
+    },
+    "angularCompilerOptions": {
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true
     }
-  },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  }
 }
