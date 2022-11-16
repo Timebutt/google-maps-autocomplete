@@ -4,7 +4,7 @@ import {
   Location,
 } from "@angular-material-extensions/google-maps-autocomplete";
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { UntypedFormControl, UntypedFormGroup } from "@angular/forms";
 import { Angulartics2GoogleAnalytics } from "angulartics2/ga";
 import PlaceResult = google.maps.places.PlaceResult;
 
@@ -16,9 +16,9 @@ import PlaceResult = google.maps.places.PlaceResult;
 export class AppComponent implements OnInit {
   title = "google-maps-autocomplete";
 
-  addressFormGroup: FormGroup;
+  addressFormGroup: UntypedFormGroup;
 
-  directiveFormControl = new FormControl();
+  directiveFormControl = new UntypedFormControl();
 
   public appearance = Appearance;
   public zoom: number;
@@ -71,9 +71,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addressFormGroup = new FormGroup({
+    this.addressFormGroup = new UntypedFormGroup({
       // address: new FormControl(this.addressValue),
-      address: new FormControl(),
+      address: new UntypedFormControl(),
     });
 
     this.addressFormGroup

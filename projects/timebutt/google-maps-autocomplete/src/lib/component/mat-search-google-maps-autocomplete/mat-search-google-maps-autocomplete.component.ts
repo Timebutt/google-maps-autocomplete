@@ -8,8 +8,8 @@ import {
 } from "@angular/core";
 import {
   ControlValueAccessor,
-  FormBuilder,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   NG_VALUE_ACCESSOR,
   Validators,
 } from "@angular/forms";
@@ -36,7 +36,7 @@ import { Appearance } from "../mat-google-maps-autocomplete.component";
 export class MatSearchGoogleMapsAutocompleteComponent
   implements OnInit, ControlValueAccessor
 {
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: UntypedFormBuilder) {
     // Set the private defaults
     this._unsubscribeAll = new Subject();
   }
@@ -96,7 +96,7 @@ export class MatSearchGoogleMapsAutocompleteComponent
   onGermanAddressMapped: EventEmitter<GermanAddress> = new EventEmitter<GermanAddress>();
 
   germanAddress: GermanAddress;
-  addressFormGroup: FormGroup;
+  addressFormGroup: UntypedFormGroup;
 
   firstInit = true;
 

@@ -32,10 +32,7 @@ const googleMapsParams = {
         CommonModule,
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
         BrowserAnimationsModule,
-        RouterModule.forRoot([], {
-            initialNavigation: 'enabled',
-            relativeLinkResolution: 'legacy',
-        }),
+        RouterModule.forRoot([]),
         Angulartics2Module.forRoot(),
         MarkdownModule.forRoot(),
         AgmCoreModule.forRoot(googleMapsParams),
@@ -51,8 +48,6 @@ const googleMapsParams = {
         MatTabsModule,
         MatRadioModule,
     ],
-    providers: [],
-    schemas: [NO_ERRORS_SCHEMA],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

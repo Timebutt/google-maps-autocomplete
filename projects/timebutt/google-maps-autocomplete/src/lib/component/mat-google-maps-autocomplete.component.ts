@@ -12,7 +12,7 @@ import {
 } from "@angular/core";
 import {
   ControlValueAccessor,
-  FormControl,
+  UntypedFormControl,
   NG_VALUE_ACCESSOR,
   Validators,
 } from "@angular/forms";
@@ -106,7 +106,7 @@ export class MatGoogleMapsAutocompleteComponent
   private addressValidator: MatValidateAddressDirective =
     new MatValidateAddressDirective();
 
-  public addressSearchControl: FormControl = new FormControl(
+  public addressSearchControl: UntypedFormControl = new UntypedFormControl(
     { value: null },
     Validators.compose([Validators.required, this.addressValidator.validate()])
   );

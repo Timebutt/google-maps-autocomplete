@@ -14,7 +14,7 @@ import {
     Output,
     PLATFORM_ID,
 } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { ControlValueAccessor, UntypedFormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { debounceTime, Subject, takeUntil } from 'rxjs';
 import { Location } from '../interfaces/location.interface';
 import { MatValidateAddressDirective } from './address-validator/mat-address-validator.directive';
@@ -69,7 +69,7 @@ export class MatGoogleMapsAutocompleteDirective implements OnInit, OnDestroy, Co
     private onNewPlaceResult: EventEmitter<any> = new EventEmitter();
     private addressValidator: MatValidateAddressDirective = new MatValidateAddressDirective();
 
-    public addressSearchControl: FormControl = new FormControl(
+    public addressSearchControl: UntypedFormControl = new UntypedFormControl(
         { value: null },
         Validators.compose([Validators.required, this.addressValidator.validate()])
     );
