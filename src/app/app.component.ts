@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Appearance, GermanAddress, Location } from '@timebutt/google-maps-autocomplete';
-import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
 import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
@@ -32,10 +31,6 @@ export class AppComponent implements OnInit {
             long: 'your locality',
         },
     };
-
-    constructor(angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
-        angulartics2GoogleAnalytics.startTracking();
-    }
 
     private setCurrentPosition() {
         if ('geolocation' in navigator) {

@@ -183,7 +183,8 @@
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "sourceMap": true,
-            "optimization": false
+            "optimization": false,
+            "buildOptimizer": false
           },
           "configurations": {
             "production": {
@@ -194,7 +195,8 @@
                 }
               ],
               "sourceMap": false,
-              "optimization": true
+              "optimization": true,
+              "buildOptimizer": true
             }
           },
           "defaultConfiguration": ""
@@ -204,7 +206,7 @@
           "options": {}
         },
         "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
             "browserTarget": "google-maps-autocomplete:build",
             "serverTarget": "google-maps-autocomplete:server"
@@ -217,7 +219,7 @@
           }
         },
         "prerender": {
-          "builder": "@nguniversal/builders:prerender",
+          "builder": "@angular-devkit/build-angular:prerender",
           "options": {
             "browserTarget": "google-maps-autocomplete:build:production",
             "serverTarget": "google-maps-autocomplete:server:production",
@@ -228,7 +230,7 @@
           }
         },
         "prerender_ghpages": {
-          "builder": "@nguniversal/builders:prerender",
+          "builder": "@angular-devkit/build-angular:prerender",
           "options": {
             "browserTarget": "google-maps-autocomplete:build_ghpages:production",
             "serverTarget": "google-maps-autocomplete:server:production",
