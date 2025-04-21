@@ -1,10 +1,13 @@
 import { Component, ElementRef, EventEmitter, forwardRef, Inject, Input, NgZone, OnInit, Output, ViewChild } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, UntypedFormControl, Validators } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR, UntypedFormControl, Validators } from '@angular/forms';
+import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { Loader } from '@googlemaps/js-api-loader';
 import { GOOGLE_MAPS_AUTOCOMPLETE_API_KEY } from '../constants';
 import { MatValidateAddressDirective } from '../directives/address-validator/mat-address-validator.directive';
 import { GermanAddress } from '../interfaces';
 import { Location } from '../interfaces/location.interface';
+
 import PlaceResult = google.maps.places.PlaceResult;
 import AutocompleteOptions = google.maps.places.AutocompleteOptions;
 
@@ -27,6 +30,7 @@ export enum Appearance {
             multi: true,
         },
     ],
+    imports: [FormsModule, MatFormFieldModule, MatInputModule],
 })
 export class MatGoogleMapsAutocompleteComponent implements OnInit, ControlValueAccessor {
     @ViewChild('search')
@@ -45,7 +49,7 @@ export class MatGoogleMapsAutocompleteComponent implements OnInit, ControlValueA
     invalidErrorText = 'The address is not valid';
 
     @Input()
-    appearance: string | Appearance = Appearance.STANDARD;
+    appearance: MatFormFieldAppearance = 'outline';
 
     @Input()
     value: PlaceResult;
@@ -85,12 +89,15 @@ export class MatGoogleMapsAutocompleteComponent implements OnInit, ControlValueA
 
     public addressSearchControl: UntypedFormControl = new UntypedFormControl(
         { value: null },
-        Validators.compose([Validators.required, this.addressValidator.validate()])
+        Validators.compose([Validators.required, this.addressValidator.validate()]),
     );
 
     propagateChange = (_: any) => {};
 
-    constructor(@Inject(GOOGLE_MAPS_AUTOCOMPLETE_API_KEY) private apiKey: string, private ngZone: NgZone) {}
+    constructor(
+        @Inject(GOOGLE_MAPS_AUTOCOMPLETE_API_KEY) private apiKey: string,
+        private ngZone: NgZone,
+    ) {}
 
     ngOnInit(): void {
         this.addressValidator.subscribe(this.onNewPlaceResult);

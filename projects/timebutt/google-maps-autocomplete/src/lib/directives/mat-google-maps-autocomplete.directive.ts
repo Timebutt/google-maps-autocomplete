@@ -19,6 +19,7 @@ import { debounceTime, Subject, takeUntil } from 'rxjs';
 import { GOOGLE_MAPS_AUTOCOMPLETE_API_KEY } from '../constants';
 import { Location } from '../interfaces/location.interface';
 import { MatValidateAddressDirective } from './address-validator/mat-address-validator.directive';
+
 import PlaceResult = google.maps.places.PlaceResult;
 import AutocompleteOptions = google.maps.places.AutocompleteOptions;
 
@@ -72,7 +73,7 @@ export class MatGoogleMapsAutocompleteDirective implements OnInit, OnDestroy, Co
 
     public addressSearchControl: UntypedFormControl = new UntypedFormControl(
         { value: null },
-        Validators.compose([Validators.required, this.addressValidator.validate()])
+        Validators.compose([Validators.required, this.addressValidator.validate()]),
     );
 
     propagateChange = (_: any) => {};
@@ -84,10 +85,10 @@ export class MatGoogleMapsAutocompleteDirective implements OnInit, OnDestroy, Co
         @Inject(PLATFORM_ID) public platformId: string,
         @Inject(GOOGLE_MAPS_AUTOCOMPLETE_API_KEY) private apiKey: string,
         public elemRef: ElementRef,
-        private ngZone: NgZone
+        private ngZone: NgZone,
     ) {}
 
-    ngOnInit(): void {
+    ngOnInit() {
         if (isPlatformBrowser(this.platformId)) {
             this.addressValidator.subscribe(this.onNewPlaceResult);
             const options: AutocompleteOptions = {
@@ -110,7 +111,7 @@ export class MatGoogleMapsAutocompleteDirective implements OnInit, OnDestroy, Co
         });
     }
 
-    ngOnDestroy(): void {
+    ngOnDestroy() {
         this.destroy$.next();
     }
 
@@ -151,15 +152,15 @@ export class MatGoogleMapsAutocompleteDirective implements OnInit, OnDestroy, Co
             });
     }
 
-    registerOnChange(fn: any): void {
+    registerOnChange(fn: any) {
         this.propagateChange = fn;
     }
 
-    registerOnTouched(fn: any): void {}
+    registerOnTouched(fn: any) {}
 
-    setDisabledState(isDisabled: boolean): void {}
+    setDisabledState(isDisabled: boolean) {}
 
-    writeValue(obj: any): void {
+    writeValue(obj: any) {
         if (obj && obj.name && obj.place_id) {
             this.elemRef.nativeElement.value = obj.name;
             // Get the first result and get its details using the PlacesService
@@ -175,7 +176,7 @@ export class MatGoogleMapsAutocompleteDirective implements OnInit, OnDestroy, Co
                     // same data format as you get from the AutoComplete.
                     this.value = place;
                     this.propagateChange(this.value);
-                }
+                },
             );
         } else if (obj && obj.name) {
             this.elemRef.nativeElement.value = obj.name;

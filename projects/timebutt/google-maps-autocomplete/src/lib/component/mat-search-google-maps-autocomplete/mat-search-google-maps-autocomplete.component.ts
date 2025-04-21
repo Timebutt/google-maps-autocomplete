@@ -1,17 +1,27 @@
 import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import {
+    ControlValueAccessor,
+    NG_VALUE_ACCESSOR,
+    ReactiveFormsModule,
+    UntypedFormBuilder,
+    UntypedFormGroup,
+    Validators,
+} from '@angular/forms';
+import { MatFormFieldAppearance, MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { InputAnimations } from '../../animations';
+import { MatGoogleMapsAutocompleteDirective } from '../../directives/mat-google-maps-autocomplete.directive';
 import { parseGermanAddress } from '../../helpers/parser';
 import { GermanAddress } from '../../interfaces';
-import { Appearance } from '../mat-google-maps-autocomplete.component';
 
 @Component({
     selector: 'mat-search-google-maps-autocomplete',
     templateUrl: './mat-search-google-maps-autocomplete.component.html',
     styleUrls: ['./mat-search-google-maps-autocomplete.component.scss'],
     animations: InputAnimations,
+
+    imports: [MatFormFieldModule, MatGoogleMapsAutocompleteDirective, MatInputModule, ReactiveFormsModule],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -25,12 +35,11 @@ export class MatSearchGoogleMapsAutocompleteComponent implements OnInit, Control
         // Set the private defaults
         this._unsubscribeAll = new Subject();
     }
+    @Input()
+    searchBarAppearance: MatFormFieldAppearance;
 
     @Input()
-    searchBarAppearance: string | Appearance;
-
-    @Input()
-    appearance: string | Appearance = Appearance.STANDARD;
+    appearance: MatFormFieldAppearance = 'outline';
 
     @Input()
     searchAddressLabel = 'Search Address';

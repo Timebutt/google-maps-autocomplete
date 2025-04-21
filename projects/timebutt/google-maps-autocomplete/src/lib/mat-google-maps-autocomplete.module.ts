@@ -1,9 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { MatGoogleMapsAutocompleteComponent } from './component/mat-google-maps-autocomplete.component';
 import { MatValidateAddressDirective } from './directives/address-validator/mat-address-validator.directive';
 import { MatGoogleMapsAutocompleteDirective } from './directives/mat-google-maps-autocomplete.directive';
@@ -12,14 +7,13 @@ import { MatSearchGoogleMapsAutocompleteComponent } from './component/mat-search
 import { GOOGLE_MAPS_AUTOCOMPLETE_API_KEY } from './constants';
 
 @NgModule({
-    imports: [CommonModule, FormsModule, ReactiveFormsModule, FlexLayoutModule, MatInputModule, MatIconModule],
-    exports: [
+    imports: [
         MatGoogleMapsAutocompleteComponent,
         MatGoogleMapsAutocompleteDirective,
         MatValidateAddressDirective,
         MatSearchGoogleMapsAutocompleteComponent,
     ],
-    declarations: [
+    exports: [
         MatGoogleMapsAutocompleteComponent,
         MatGoogleMapsAutocompleteDirective,
         MatValidateAddressDirective,
