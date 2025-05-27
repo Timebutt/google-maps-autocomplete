@@ -163,6 +163,12 @@ export class MatGoogleMapsAutocompleteDirective implements OnInit, OnDestroy, Co
     writeValue(obj: any) {
         if (obj && obj.name && obj.place_id) {
             this.elemRef.nativeElement.value = obj.name;
+
+            // When offline, PlacesService does not exist!
+            if (!Boolean(google.maps.places.PlacesService)) {
+                return;
+            }
+
             // Get the first result and get its details using the PlacesService
             const placesService = new google.maps.places.PlacesService(document.createElement('div'));
 
