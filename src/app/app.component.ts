@@ -1,13 +1,43 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { Appearance, GermanAddress, Location } from '@timebutt/google-maps-autocomplete';
-import { Angulartics2GoogleAnalytics } from 'angulartics2/ga';
+import { ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
+import {
+    Appearance,
+    GermanAddress,
+    Location,
+    MatGoogleMapsAutocompleteComponent,
+    MatGoogleMapsAutocompleteDirective,
+    MatSearchGoogleMapsAutocompleteComponent,
+} from '@timebutt/google-maps-autocomplete';
+import { MarkdownComponent } from 'ngx-markdown';
+import { ConfigComponent } from 'src/config/config.component';
 import PlaceResult = google.maps.places.PlaceResult;
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    imports: [
+        CommonModule,
+        ConfigComponent,
+        MarkdownComponent,
+        MatButtonToggleModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatExpansionModule,
+        MatInputModule,
+        MatGoogleMapsAutocompleteComponent,
+        MatGoogleMapsAutocompleteDirective,
+        MatSearchGoogleMapsAutocompleteComponent,
+        MatTabsModule,
+        ReactiveFormsModule,
+    ],
 })
 export class AppComponent implements OnInit {
     title = 'google-maps-autocomplete';
@@ -32,10 +62,6 @@ export class AppComponent implements OnInit {
             long: 'your locality',
         },
     };
-
-    constructor(angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {
-        angulartics2GoogleAnalytics.startTracking();
-    }
 
     private setCurrentPosition() {
         if ('geolocation' in navigator) {

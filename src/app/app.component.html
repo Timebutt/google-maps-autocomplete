@@ -9,8 +9,9 @@
 
 <style>
     :host {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-            'Segoe UI Emoji', 'Segoe UI Symbol';
+        font-family:
+            -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+            'Segoe UI Symbol';
         font-size: 14px;
         color: #333;
         box-sizing: border-box;
@@ -192,7 +193,12 @@
     }
 
     .terminal pre {
-        font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+        font-family:
+            SFMono-Regular,
+            Consolas,
+            Liberation Mono,
+            Menlo,
+            monospace;
         color: white;
         padding: 0 1rem 1rem;
         margin: 0;
@@ -209,7 +215,9 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        box-shadow:
+            0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
         transition: 1s ease-out;
     }
 
@@ -241,7 +249,15 @@
         background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%);
         margin-left: 4px;
         font-weight: 600;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+        font-family:
+            -apple-system,
+            BlinkMacSystemFont,
+            Segoe UI,
+            Helvetica,
+            Arial,
+            sans-serif,
+            Apple Color Emoji,
+            Segoe UI Emoji,
             Segoe UI Symbol;
     }
 
@@ -302,7 +318,7 @@
         alt="Angular Logo"
         src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
     />
-    <span>@angular-material-extensions/google-maps-autocomplete</span>
+    <span>&#64;angular-material-extensions/google-maps-autocomplete</span>
     <div class="spacer"></div>
     <a aria-label="Github repository" target="_blank" rel="noopener" href="https://github.com/angular-material-extensions">
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" viewBox="0 0 24 24">
@@ -450,13 +466,13 @@
 
     <!-- Terminal -->
     <div class="terminal">
-        <pre>ng add @angular-material-extensions/google-maps-autocomplete</pre>
+        <pre>ng add &#64;angular-material-extensions/google-maps-autocomplete</pre>
     </div>
 
     <!-- Usage -->
     <h2>Usage</h2>
 
-    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle-group [hideSingleSelectionIndicator]="true" name="fontStyle" aria-label="Font Style">
         <mat-button-toggle [checked]="showAsDirective" (click)="flip()"> As directive </mat-button-toggle>
         <mat-button-toggle [checked]="showAsComponent" (click)="flip()"> As component </mat-button-toggle>
     </mat-button-toggle-group>
@@ -474,13 +490,7 @@
                                 </agm-map> -->
                             </div>
 
-                            <div
-                                fxFlex
-                                fxFlexAlign="center"
-                                class="autocomplete-container"
-                                [ngStyle.xs]="{ 'min-width.%': 100 }"
-                                [ngStyle.sm]="{ 'width.%': 70 }"
-                            >
+                            <div fxFlex fxFlexAlign="center" class="autocomplete-container">
                                 <div fxLayout="column" *ngIf="showAsDirective">
                                     <mat-form-field class="full-width" [appearance]="config.appearance">
                                         <mat-label>Address << using the directive >></mat-label>
@@ -527,7 +537,7 @@
                                 <mat-accordion>
                                     <mat-expansion-panel>
                                         <mat-expansion-panel-header>
-                                            <mat-panel-title> @Input() </mat-panel-title>
+                                            <mat-panel-title> &#64;Input() </mat-panel-title>
                                             <mat-panel-description> Change the default values </mat-panel-description>
                                         </mat-expansion-panel-header>
                                         <app-config #config></app-config>
@@ -535,7 +545,7 @@
 
                                     <mat-expansion-panel fxHide="true">
                                         <mat-expansion-panel-header>
-                                            <mat-panel-title> @Output() </mat-panel-title>
+                                            <mat-panel-title> &#64;Output() </mat-panel-title>
                                             <mat-panel-description> See the return values of the available events </mat-panel-description>
                                         </mat-expansion-panel-header>
                                     </mat-expansion-panel>
@@ -554,6 +564,7 @@
                 <mat-tab>
                     <ng-template mat-tab-label>HTML</ng-template>
                     <div fxLayout="column" fxLayoutAlign="center">
+                        test
                         <markdown src="assets/md/html.md"></markdown>
                     </div>
                 </mat-tab>
@@ -592,63 +603,6 @@
             <markdown src="assets/md/search//html.md"></markdown>
         </mat-card-footer>
     </mat-card>
-
-    <!-- Next Steps -->
-    <h2 style="margin-top: 4rem">Next Steps</h2>
-    <p>What do you want to do next with your app? Here are some awesome suggested libraries for you!</p>
-
-    <input type="hidden" #selection />
-
-    <div class="card-container">
-        <div class="card card-small" (click)="selection.value = 'component'" tabindex="0">
-            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-            </svg>
-
-            <span>ngx-auth-firebaseui</span>
-        </div>
-
-        <div class="card card-small" (click)="selection.value = 'material'" tabindex="0">
-            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-            </svg>
-
-            <span>password-strength</span>
-        </div>
-
-        <div class="card card-small" (click)="selection.value = 'dependency'" tabindex="0">
-            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-            </svg>
-
-            <span>google-maps-autocomplete</span>
-        </div>
-
-        <div class="card card-small" (click)="selection.value = 'test'" tabindex="0">
-            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-            </svg>
-
-            <span>pages</span>
-        </div>
-
-        <div class="card card-small" (click)="selection.value = 'build'" tabindex="0">
-            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-            </svg>
-
-            <span>links-preview</span>
-        </div>
-    </div>
-
-    <!-- Terminal -->
-    <div class="terminal" [ngSwitch]="selection.value">
-        <pre *ngSwitchDefault>ng add ngx-auth-firebaseui</pre>
-        <pre *ngSwitchCase="'material'">ng add @angular-material-extensions/password-strength</pre>
-        <pre *ngSwitchCase="'dependency'">ng add @angular-material-extensions/google-maps-autocomplete </pre>
-        <pre *ngSwitchCase="'test'">ng add @angular-material-extensions/pages</pre>
-        <pre *ngSwitchCase="'build'">ng add @angular-material-extensions/links-preview </pre>
-    </div>
 
     <!-- Links -->
     <div class="card-container">

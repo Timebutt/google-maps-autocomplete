@@ -1,22 +1,24 @@
 <div fxLayout="column">
-    <div *ngIf="!disableSearch" fxFlex="100">
-        <!--search address-->
-        <mat-form-field fxFlex="auto" [appearance]="searchBarAppearance" [@animate]="{ value: '*', params: { y: '100%' } }">
-            <mat-label>{{ searchAddressLabel }}</mat-label>
-            <input
-                (onAutocompleteSelected)="syncAutoComplete($event)"
-                [country]="country"
-                [placeIdOnly]="placeIdOnly"
-                [strictBounds]="strictBounds"
-                [types]="types"
-                matGoogleMapsAutocomplete
-                matInput
-                required
-            />
-            <mat-icon color="primary" matSuffix>search</mat-icon>
-            <!--    <mat-error>{{ 'msa.contactData.currentAddress.error' | translate }}</mat-error>-->
-        </mat-form-field>
-    </div>
+    @if (!disableSearch) {
+        <div fxFlex="100">
+            <!--search address-->
+            <mat-form-field fxFlex="auto" [appearance]="searchBarAppearance" [@animate]="{ value: '*', params: { y: '100%' } }">
+                <mat-label>{{ searchAddressLabel }}</mat-label>
+                <input
+                    (onAutocompleteSelected)="syncAutoComplete($event)"
+                    [country]="country"
+                    [placeIdOnly]="placeIdOnly"
+                    [strictBounds]="strictBounds"
+                    [types]="types"
+                    matGoogleMapsAutocomplete
+                    matInput
+                    required
+                />
+                <mat-icon color="primary" matSuffix>search</mat-icon>
+                <!--    <mat-error>{{ 'msa.contactData.currentAddress.error' | translate }}</mat-error>-->
+            </mat-form-field>
+        </div>
+    }
 
     <form [formGroup]="addressFormGroup" fxFlex fxLayoutGap="10px">
         <div fxLayout="row" fxLayoutGap="10px">
@@ -40,10 +42,12 @@
                 <!--        <mat-icon color="primary" matSuffix>add_location</mat-icon>-->
                 <!--    <mat-error>{{ 'msa.contactData.currentAddress.error' | translate }}</mat-error>-->
             </mat-form-field>
-            <mat-form-field *ngIf="showVicinity" fxFlex="auto" [appearance]="appearance" [@animate]="{ value: '*', params: { y: '100%' } }">
-                <mat-label>{{ vicinityLabel }}</mat-label>
-                <input [readonly]="readonly" matInput formControlName="vicinity" />
-            </mat-form-field>
+            @if (showVicinity) {
+                <mat-form-field fxFlex="auto" [appearance]="appearance" [@animate]="{ value: '*', params: { y: '100%' } }">
+                    <mat-label>{{ vicinityLabel }}</mat-label>
+                    <input [readonly]="readonly" matInput formControlName="vicinity" />
+                </mat-form-field>
+            }
             <div formGroupName="locality" fxFlex="auto">
                 <mat-form-field fxFlex="auto" [appearance]="appearance" [@animate]="{ value: '*', params: { y: '100%' } }">
                     <mat-label>{{ localityLabel }}</mat-label>

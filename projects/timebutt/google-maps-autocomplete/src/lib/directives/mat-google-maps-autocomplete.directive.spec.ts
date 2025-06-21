@@ -6,6 +6,7 @@ import { MatGoogleMapsAutocompleteDirective } from './mat-google-maps-autocomple
 
 @Component({
     template: `<input type="text" />`,
+    standalone: false
 })
 class TestGoogleMapsAutoCompleteComponent {}
 
