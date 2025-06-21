@@ -14,7 +14,6 @@ import {
     PLATFORM_ID,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, UntypedFormControl, Validators } from '@angular/forms';
-import { Loader } from '@googlemaps/js-api-loader';
 import { debounceTime, Subject, takeUntil } from 'rxjs';
 import { GOOGLE_MAPS_AUTOCOMPLETE_API_KEY } from '../constants';
 import { Location } from '../interfaces/location.interface';
@@ -116,40 +115,29 @@ export class MatGoogleMapsAutocompleteDirective implements OnInit, OnDestroy, Co
     }
 
     public initGoogleMapsAutocomplete() {
-        new Loader({
-            apiKey: this.apiKey,
-            version: 'weekly',
-            libraries: ['places'],
-        })
-            .load()
-            .then(() => {
-                const autocomplete = new google.maps.places.Autocomplete(this.elemRef.nativeElement, this.autoCompleteOptions);
-                autocomplete.addListener('place_changed', () => {
-                    this.ngZone.run(() => {
-                        // get the place result
-                        const place: PlaceResult = autocomplete.getPlace();
+        const autocomplete = new google.maps.places.Autocomplete(this.elemRef.nativeElement, this.autoCompleteOptions);
+        autocomplete.addListener('place_changed', () => {
+            this.ngZone.run(() => {
+                // get the place result
+                const place: PlaceResult = autocomplete.getPlace();
 
-                        if (!place.place_id || place.geometry === undefined || place.geometry === null) {
-                            // place result is not valid
-                            return;
-                        } else {
-                            // show dialog to select a address from the input
-                            // emit failed event
-                            this.value = place;
-                            this.propagateChange(this.value);
-                        }
-                        this.address = place.formatted_address;
-                        this.onAutocompleteSelected.emit(place);
-                        this.onLocationSelected.emit({
-                            latitude: place.geometry.location.lat(),
-                            longitude: place.geometry.location.lng(),
-                        });
-                    });
+                if (!place.place_id || place.geometry === undefined || place.geometry === null) {
+                    // place result is not valid
+                    return;
+                } else {
+                    // show dialog to select a address from the input
+                    // emit failed event
+                    this.value = place;
+                    this.propagateChange(this.value);
+                }
+                this.address = place.formatted_address;
+                this.onAutocompleteSelected.emit(place);
+                this.onLocationSelected.emit({
+                    latitude: place.geometry.location.lat(),
+                    longitude: place.geometry.location.lng(),
                 });
-            })
-            .catch((err) => {
-                console.log(err);
             });
+        });
     }
 
     registerOnChange(fn: any) {
